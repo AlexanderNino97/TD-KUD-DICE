@@ -149,7 +149,7 @@ Si faltan los mp3, el juego genera los mismos cuatro tonos (do, re, mi, fa) y lo
 
 ```bash
 cd backend && npm install && npm start          # API de prueba en :3000
-cd ../frontend && npx http-server -c-1          # juego en :8080
+cd ../frontend &&  npx http-server -c-1         # juego en :8080
 ```
 * **Prueba completa:** `http://127.0.0.1:8080/test_host.html?token=DEMO&apiBase=http://localhost:3000/api/v1`. Muestra los indicadores, la tabla por longitud y el JSON.
 * **Prueba automática:** `index.html?autotest=1&sinTransicion=1`.

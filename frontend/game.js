@@ -1,5 +1,5 @@
 /* =====================================================================
-   TG-03 · Kud dice — reproducción de secuencias audiovisuales (4 tambores)
+   TG-04 · Kud dice — reproducción de secuencias audiovisuales (4 tambores)
    Flujo: laboratorio (consigna) → transición → demostración de Kud →
           práctica guiada → ensayos (longitud creciente) → cierre → envío
    Procedimiento tipo Corsi: 2 ensayos por longitud, reproducción completa,
@@ -24,7 +24,7 @@ const DEBUG        = urlParams.get("debug") === "1" || AUTOTEST;
    2. CONFIGURACIÓN (cambiar aquí = subir configVersion)
    ------------------------------------------------------------------- */
 const CONFIG = {
-    taskId: "TG-03",
+    taskId: "TG-04",
     contractVersion: "1",
     configVersion: 2,
     drums: [   // de izquierda a derecha, tono ascendente
