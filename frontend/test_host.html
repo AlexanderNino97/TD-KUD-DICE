@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TG-03 · Host de prueba (iframe + postMessage)</title>
+    <title>TG-04 · Host de prueba (iframe + postMessage)</title>
     <style>
         body { margin: 0; font-family: system-ui, sans-serif; background: #f4f1ea; color: #1d2b52; display: grid; grid-template-columns: minmax(0, 2fr) minmax(320px, 1fr); height: 100vh; }
         iframe { width: 100%; height: 100%; border: 0; background: #14264d; }
@@ -46,7 +46,7 @@
         const d = ev.data.payload; if (!d) return;
         document.getElementById("status").innerHTML = `Mensaje <b>${ev.data.type}</b> · estado <span class="state ${d.state}">${d.state}</span> · fase alcanzada: ${d.phaseReached}`;
         const s = d.summary || {};
-        let html = "<h3>TG-03 · Indicadores</h3><table>";
+        let html = "<h3>TG-04 · Indicadores</h3><table>";
         for (const k in labels) html += `<tr><td>${labels[k]}</td><td>${s[k] ?? "—"}</td></tr>`;
         html += "</table><h3>Por longitud de secuencia (carga)</h3><table><tr><th>Longitud</th><th>Válidos</th><th>Correctos</th><th>Precisión %</th><th>Posiciones %</th><th>Latencia mediana</th></tr>";
         (s.byLength || []).forEach((b) => { html += `<tr><td>${b.length}</td><td>${b.validTrials}</td><td>${b.correctTrials}</td><td>${b.precisionPct ?? "—"}</td><td>${b.positionAccuracyPct ?? "—"}</td><td>${b.firstTapLatencyMedianMs ?? "—"}</td></tr>`; });
@@ -58,7 +58,7 @@
         document.getElementById("dl").onclick = () => {
             const a = document.createElement("a");
             a.href = URL.createObjectURL(new Blob([JSON.stringify(d, null, 2)], { type: "application/json" }));
-            a.download = `TG-03_${d.sessionId || "sesion"}_${d.state}.json`; a.click();
+            a.download = `TG-04_${d.sessionId || "sesion"}_${d.state}.json`; a.click();
         };
     });
 </script>
