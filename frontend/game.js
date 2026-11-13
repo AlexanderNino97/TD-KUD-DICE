@@ -455,6 +455,28 @@ function playTransition() {
         setTimeout(showMusic, 300);
     });
 }
+function showLab() {
+    $("bgMusic").classList.add("hidden"); $("shipFront").classList.add("hidden"); $("drums").classList.add("hidden");
+    $("musicText").classList.add("hidden", "off"); $("taps").innerHTML = "";
+    $("bgLab").classList.remove("hidden");
+    $("labText").classList.remove("hidden", "off");
+    $("kud").className = "layer lab"; where = "lab";
+}
+function playReturnTransition() {
+    return new Promise((resolve) => {
+        if (SKIP_VIDEO) { addIncident("transition_back_skipped", { reason: "url_param" }); resolve(); return; }
+        const v = $("transitionBack"); let done = false;
+        const finish = (why) => { if (done) return; done = true; if (why) addIncident("transition_back_skipped", { reason: why });
+            v.classList.add("fade"); v.style.opacity = "0"; setTimeout(() => { v.classList.add("hidden"); v.style.opacity = ""; }, 400); resolve(); };
+        v.classList.remove("hidden");
+        v.addEventListener("ended", () => finish(null), { once: true });
+        v.addEventListener("error", () => finish("video_error"), { once: true });
+        setTimeout(() => finish("timeout"), 15000);
+        v.currentTime = 0; v.play().catch(() => finish("autoplay_blocked"));
+        // el laboratorio queda listo debajo para que el último cuadro empalme sin salto
+        setTimeout(showLab, 300);
+    });
+}
 async function intro() {
     phase = "intro"; sessionData.phaseReached = "intro";
     say("¡Hola! Soy Kud.", 1400);
@@ -497,9 +519,14 @@ async function main() {
     sessionData.timing.testEndMs = r1(now()); sessionData.timing.testEndedAt = new Date().toISOString();
     sessionData.timing.testDurationMs = r1(sessionData.timing.testEndMs - sessionData.timing.testStartMs);
     sessionData.summary = computeIndicators(sessionData.events, CONFIG);
+    submit(false);                       // los datos se envían antes de la transición
     celebrate();
-    say("¡Concierto terminado! Gracias por tocar conmigo.", 2600);
-    submit(false);
+    say("¡Concierto terminado!", 2000);
+    await sleep(2400);
+    $("musicText").classList.add("off"); kudTalking(false);
+    await playReturnTransition();
+    showLab();
+    say("¡Gracias por tocar conmigo!", 2600);
 }
 
 /* ---------------------------------------------------------------------

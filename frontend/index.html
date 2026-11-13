@@ -59,7 +59,7 @@
         .btn:active { transform: translateY(.25cqw); box-shadow: 0 .1cqw 0 #1d2b52; }
 
         #fx { position: absolute; inset: 0; width: 100% !important; height: 100% !important; pointer-events: none; }
-        #transition { z-index: 20; background: #14264d; }
+        #transition, #transitionBack { z-index: 20; background: #14264d; }
         #loading { position: absolute; inset: 0; display: grid; place-items: center; color: #fffaf0; font-size: 1.6cqw; z-index: 30; background: #14264d; }
         #debug { position: absolute; left: 0; bottom: 0; max-height: 40%; overflow: auto; font: 10px monospace; background: #fff; color: #000; z-index: 40; white-space: pre; }
     </style>
@@ -96,6 +96,11 @@
         <video id="transition" class="layer full hidden" muted playsinline preload="auto">
             <source src="assets/transicion-lab-a-musica.webm" type="video/webm">
             <source src="assets/transicion-lab-a-musica.mp4" type="video/mp4">
+        </video>
+        <!-- Transición laboratorio musical → laboratorio (al terminar el concierto) -->
+        <video id="transitionBack" class="layer full hidden" muted playsinline preload="auto">
+            <source src="assets/transicion-musica-a-lab.webm" type="video/webm">
+            <source src="assets/transicion-musica-a-lab.mp4" type="video/mp4">
         </video>
         <div id="loading">Cargando…</div>
     </div>
